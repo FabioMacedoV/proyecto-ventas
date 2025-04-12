@@ -15,7 +15,10 @@ class AuthController{
         $usuario = $this->db->login($user, $password);
 
         session_start();
-        $_SESSION['usuario'] = $usuario['usuario'];
+        $_SESSION['id'] = $usuario["id"];
+        $_SESSION['usuario'] = $usuario["usuario"];
+        $_SESSION['nombre'] = $usuario["nombre"];
+        $_SESSION['rol'] = $usuario["rol"];
         return true;
 
     }

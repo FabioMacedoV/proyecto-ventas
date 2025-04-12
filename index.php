@@ -13,7 +13,7 @@
         $usuario = $controlador->login($user, $password);
 
         if ($usuario === true) {
-            header('Location: ./app/views/home.php');
+            header('Location: ./app/views/menuCajero.php');
             exit();
         } else {
             $mensaje_error = "Usuario o contraseña incorrectos";
@@ -62,7 +62,9 @@
     </div>
 </div>
 
-<!-- <?php print_r($usuarios); ?> -->
+<!-- <?php print_r($usuario["id"]); ?>
+
+<?php echo $_SESSION["nombre"] ?> -->
 
 </body>
 </html>
