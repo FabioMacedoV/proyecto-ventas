@@ -64,6 +64,44 @@ function cambiarEstado(boton) {
   });
 }
 
+function anularEstado(boton) {
+  let id = parseInt($(boton).closest('tr').find('td:eq(0)').text());
+
+  Swal.fire({
+      title: '¿Estás seguro?',
+      text: '¿Quieres anular el pedido?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Sí, anular',
+      cancelButtonText: 'Cancelar'
+  }).then((result) => {
+      if (result.isConfirmed) {
+          $.ajax({
+              url: '../controllers/ventas/anularEstado.php',
+              type: "POST",
+              data: { id: id },
+              success: function (respuesta) {
+                  if (respuesta == 'ok') {
+                      Swal.fire({
+                          title: '¡Pedido anulado!',
+                          text: 'El pedido fue anulado correctamente.',
+                          icon: 'success',
+                          confirmButtonText: 'Aceptar'
+                      }).then(() => {
+                          cargarVentas();
+                      });
+                  } else {
+                      console.error("Error al anular estado:", respuesta);
+                  }
+              },
+              error: function (xhr, status, error) {
+                  console.error("Error AJAX:", error);
+              }
+          });
+      }
+  });
+}
+
 window.onload = function() {
     cargarVentas();
 }

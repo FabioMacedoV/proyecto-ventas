@@ -4,14 +4,15 @@ class Conexion{
 
     private $conexion;
 
-    public function conectar(){
-        $host = 'localhost';
-        $dbname = 'sistema_cafeteria';
-        $usuario = 'root';
-        $contrasena = '';
+    public function conectar() {
+        $host = 'tramway.proxy.rlwy.net'; 
+        $dbname = 'railway';    
+        $usuario = 'root';                
+        $contrasena = 'ndImRgdmdbmOeCtqrpyfizOURpjiiFfl';                 
+        $puerto = '35770';                 
 
-        try{
-            $this->conexion = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $usuario, $contrasena);
+        try {
+            $this->conexion = new PDO("mysql:host=$host;dbname=$dbname;port=$puerto;charset=utf8", $usuario, $contrasena);
             $this->conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             return $this->conexion;
         }

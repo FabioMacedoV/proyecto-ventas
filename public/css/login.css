@@ -1,0 +1,19 @@
+body {
+    background-color: #f2f4f7;
+  }
+
+  .bg-azul-marino {
+    background-color: #0d1b2a !important;
+  }
+
+  .logo {
+    display: block;
+    margin: 0 auto 20px;
+    max-width: 120px;
+  }
+
+  .error {
+    color: red;
+    margin-top: 10px;
+    text-align: center;
+  }
