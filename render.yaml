@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: web-cafeteria-php
+    name: proyecto-ventas
     env: docker
     plan: free
     dockerfilePath: Dockerfile
