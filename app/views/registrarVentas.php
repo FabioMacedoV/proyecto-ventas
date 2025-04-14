@@ -56,6 +56,10 @@ if (session_status() === PHP_SESSION_NONE) {
             </table>
           </div>
           <div class="col">
+            <div class="row">
+              <div class="col">
+                <h4 class="text-center">Productos Seleccionados</h4>
+              </div>
             <table class="table">
               <tr>
                 <th scope="col">Producto</th>
@@ -65,6 +69,14 @@ if (session_status() === PHP_SESSION_NONE) {
               </tr>
               <tbody id="tableVenta"></tbody>
             </table>
+            </div>
+            <div class="row">
+              <div class="col">
+                <label>Total: </label>
+                <input type="text" class="form-control" id="total" name="total" value="0.00" readonly>
+              </div>
+            </div>
+            <button class="btn btn-primary" id="btnRegistrarVenta">Registrar Venta</button>
           </div>
         </div>
 

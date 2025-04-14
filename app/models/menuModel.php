@@ -20,4 +20,38 @@ class MenuModel{
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function insertarPedido($total) {
+        $conexion = $this->db->conectar();
+        $sql = "INSERT INTO pedidos (total, fecha) VALUES (?, NOW())";
+        $stmt = $conexion->prepare($sql);
+        $stmt->execute([$total]);
+        return $conexion->lastInsertId();
+    }
+
+    public function insertarDetallePedido($idPedido, $idProducto, $cantidad) {
+        $sql = "INSERT INTO pedido_detalle(pedido_id, producto_id, cantidad) VALUES (:pedido, :producto, :cantidad)";
+        $stmt = $this->db->conectar()->prepare($sql);
+        $stmt->bindParam(":pedido", $idPedido, PDO::PARAM_INT);
+        $stmt->bindParam(":producto", $idProducto, PDO::PARAM_INT);
+        $stmt->bindParam(":cantidad", $cantidad, PDO::PARAM_INT);
+        $stmt->execute();
+        return true;
+    }
+
+    public function buscarUltimoIdPedido(){
+        $sql = "SELECT MAX(id) AS ultimo_id FROM pedidos";
+        $stmt = $this->db->conectar()->prepare($sql);
+        $stmt->execute();
+        $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $resultado['ultimo_id'] ?? 0;
+    }
+
+    public function cambiarEstado($id, $estado){
+        $sql = "UPDATE pedidos SET estado = :estado WHERE id = :id";
+        $stmt = $this->db->conectar()->prepare($sql);
+        $stmt->bindParam(":id", $id, PDO::PARAM_INT);
+        $stmt->bindParam(":estado", $estado, PDO::PARAM_STR);
+        return $stmt->execute();
+    }
+
 }

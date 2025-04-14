@@ -21,6 +21,49 @@ function obtenerPedido(id){
     window.location.href = '/proyecto-ventas/app/views/detallePedido.php?id=' + id;
 }
 
+function cambiarEstado(boton) {
+  let id = parseInt($(boton).closest('tr').find('td:eq(0)').text());
+  let estado = $(boton).closest('tr').find('td:eq(3)').text();
+
+  let nuevoEstado = estado === 'pendiente' ? 'preparando' :
+                    estado === 'preparando' ? 'listo' :
+                    estado === 'listo' ? 'entregado' : 'pendiente';
+
+  Swal.fire({
+      title: '¿Estás seguro?',
+      text: `¿Quieres cambiar el estado a "${nuevoEstado}"?`,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Sí, cambiar',
+      cancelButtonText: 'Cancelar'
+  }).then((result) => {
+      if (result.isConfirmed) {
+          $.ajax({
+              url: '../controllers/ventas/cambiarEstado.php',
+              type: "POST",
+              data: { id: id, estado: nuevoEstado },
+              success: function (respuesta) {
+                  if (respuesta == 'ok') {
+                      Swal.fire({
+                          title: '¡Estado cambiado!',
+                          text: `El estado del pedido fue actualizado a "${nuevoEstado}".`,
+                          icon: 'success',
+                          confirmButtonText: 'Aceptar'
+                      }).then(() => {
+                          cargarVentas();
+                      });
+                  } else {
+                      console.error("Error al cambiar estado:", respuesta);
+                  }
+              },
+              error: function (xhr, status, error) {
+                  console.error("Error AJAX:", error);
+              }
+          });
+      }
+  });
+}
+
 window.onload = function() {
     cargarVentas();
 }

@@ -88,7 +88,6 @@
     <script src="./../../public/js/bootstrap.min.js"></script>
     <script>
         $('#btnRegresar').on('click', function () {
-            debugger
             window.location.href = '/proyecto-ventas/app/views/registroVentas.php';
         });
     </script>

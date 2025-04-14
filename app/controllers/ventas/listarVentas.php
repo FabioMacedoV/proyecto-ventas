@@ -19,7 +19,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             echo "<td>Pedido {$pedido['id']}</td>";
             echo "<td>{$pedido['total']}</td>";
             echo "<td>{$pedido['estado']}</td>";
-            echo "<td><button class='btn btn-success' onclick='obtenerPedido({$pedido['id']})'>Detalles</button></td>";
+            echo "<td><button class='btn btn-success' onclick='obtenerPedido({$pedido['id']})'>Detalles</button>
+            &nbsp;&nbsp;
+            <button class='btn btn-warning'onclick='cambiarEstado(this)'>Cambiar Estado</button></td>";
             echo "</tr>";
         }
     }else{

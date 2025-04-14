@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             echo "<td>{$producto['categoria']}</td>";
             echo "<td>{$producto['nombre']}</td>";
             echo "<td>{$producto['precio']}</td>";
-            echo "<td><button class='btn btn-primary' onclick=\"agregarProducto('{$producto['nombre']}', '{$producto['precio']}')\">Agregar</button></td>";
+            echo "<td><button class='btn btn-primary' onclick=\"agregarProducto({$producto['id']} ,'{$producto['nombre']}', '{$producto['precio']}')\">Agregar</button></td>";
             echo "</tr>";
         }
     } else {
