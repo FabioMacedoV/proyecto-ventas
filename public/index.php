@@ -1,5 +1,5 @@
 <?php
-    require_once __DIR__ ."/app/controllers/authController.php";
+    require_once __DIR__ . "/../app/controllers/authController.php";
 
     $mensaje_error = "";
 
@@ -13,7 +13,7 @@
         $usuario = $controlador->login($user, $password);
 
         if ($usuario === true) {
-            header('Location: ./app/views/menuCajero.php');
+            header('Location: ./../app/views/menuCajero.php');
             exit();
         } else {
             $mensaje_error = "Usuario o contraseña incorrectos";
@@ -28,8 +28,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Página de Inicio de Sesión</title>
-    <link rel="stylesheet" href="./public/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="./public/css/login.css" />
+    <link rel="stylesheet" href="./css/bootstrap.min.css" />
+    <link rel="stylesheet" href="./css/login.css" />
 </head>
 <body>
 <div class="container py-5">
@@ -38,7 +38,7 @@
       <div class="card shadow-sm border-0">
         <div class="card-body text-center">
           <!-- Logo -->
-          <img src="./public/img/logo.png" alt="Logo Cafetería" class="logo">
+          <img src="./img/logo.png" alt="Logo Cafetería" class="logo">
 
           <!-- Título -->
           <h4 class="mb-4 text-dark">Iniciar Sesión</h4>
