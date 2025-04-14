@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: web-cafeteria-php
+    env: docker
+    plan: free
+    dockerfilePath: Dockerfile
+    branch: main
